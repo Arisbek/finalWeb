@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
-import Auth from './components/Auth';
-import TeacherDashboard from './components/TeacherDashboard';
-import StudentDashboard from './components/StudentDashboard';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/HomePage';
+import About from './pages/AboutPage';
 
 function App() {
-    const [user, setUser] = useState(null);
-
     return (
-        <div>
-            {!user ? (
-                <Auth setUser={setUser} />
-            ) : user.role === 'teacher' ? (
-                <TeacherDashboard user={user} />
-            ) : (
-                <StudentDashboard user={user} />
-            )}
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+            </Routes>
+        </Router>
     );
 }
 
